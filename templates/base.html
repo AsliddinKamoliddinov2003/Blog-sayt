@@ -1,0 +1,32 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asliddin Blog</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <h2><a href="{% url 'create-post' %}">Add post</a></h2>
+</head>
+<body>
+    
+    <header>
+        <h1><a href="{% url 'home' %}">Asliddin Blog</a></h1>
+    </header>
+    {% if user.is_authenticated %}
+        <p>Xush kelibsiz, {{user.username}}!</p>
+        <p><a href="{% url 'logout' %}">Chiqish</a></p>
+    {% else %}
+        <a href="{% url 'login' %}">Saytga kirish</a>
+        <br>    
+        <a href="{% url 'signup' %}">Ro'yxatdan o'tish</a>
+    {% endif %}
+    <div>
+        {% block content %}
+        
+        {% endblock content %}
+    </div>
+
+</body>
+</html>
